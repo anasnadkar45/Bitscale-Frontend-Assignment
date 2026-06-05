@@ -27,7 +27,7 @@ const Sidebar = () => {
     return (
         <aside className="flex h-screen w-[220px] flex-col border-r border-gray-200 bg-white">
             {/* Logo */}
-            <div className="flex h-[54px] items-center border-b border-gray-200 px-4">
+            <div className="flex h-[57px] items-center border-b border-gray-200 px-4">
                 <Image
                     src="/Bitscale_Logo.svg"
                     alt="Bitscale Logo"
@@ -66,7 +66,8 @@ const Sidebar = () => {
                     </button>
                 </DropdownMenuTrigger>
 
-                <DropdownMenuContent align="center" className="w-[190px]">
+                <DropdownMenuContent align="center" className="w-[190px]
+                ">
                     <DropdownMenuGroup>
                         <DropdownMenuLabel>Workspace</DropdownMenuLabel>
                         <DropdownMenuItem>GTM Spaces</DropdownMenuItem>

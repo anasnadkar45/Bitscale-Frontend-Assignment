@@ -1,0 +1,332 @@
+export type GridIconType =
+  | "workbook"
+  | "group"
+  | "building"
+  | "linkedin"
+  | "sales-nav"
+  | "company"
+  | "csv"
+  | "people"
+  | "google-maps"
+  | "google"
+  | "factors"
+  | "hubspot";
+
+export interface DashboardAction {
+  id: string;
+  label: string;
+  icon: string;
+  variant: "outline" | "dark";
+}
+
+export interface LatestCard {
+  badge: string;
+  title: string;
+  description: string;
+  thumbnail: string;
+  postedAt: string;
+  slidesCount: number;
+  activeSlide: number;
+}
+
+export interface DemoTask {
+  id: string;
+  label: string;
+  completed: boolean;
+}
+
+export interface ProductDemo {
+  title: string;
+  subtitle: string;
+  icon: string;
+  progress: number;
+  tasks: DemoTask[];
+}
+
+export interface GridIconConfig {
+  label: string;
+  icon: string;
+}
+
+export interface MyGrid {
+  id: string;
+  name: string;
+  isStarred: boolean;
+  isExpanded?: boolean;
+  icons: GridIconType[];
+  editedBy: {
+    avatar: string;
+    name: string;
+  };
+  lastUpdatedAt: string;
+}
+
+export interface DashboardData {
+  welcome: {
+    title: string;
+    subtitle: string;
+  };
+  actions: DashboardAction[];
+  latestCard: LatestCard;
+  productDemo: ProductDemo;
+  tabs: {
+    id: string;
+    label: string;
+    active: boolean;
+  }[];
+  search: {
+    placeholder: string;
+  };
+  gridIcons: Record<GridIconType, GridIconConfig>;
+  grids: MyGrid[];
+}
+
+export const dashboardData: DashboardData = {
+  welcome: {
+    title: "Welcome back, Tim!",
+    subtitle: "Here’s your daily scoop on Bitscale!",
+  },
+
+  actions: [
+    {
+      id: "find-companies",
+      label: "Find Companies",
+      icon: "/icons/building.svg",
+      variant: "outline",
+    },
+    {
+      id: "find-people",
+      label: "Find People",
+      icon: "/icons/people.svg",
+      variant: "outline",
+    },
+    {
+      id: "new-grid",
+      label: "New Grid",
+      icon: "/icons/plus.svg",
+      variant: "dark",
+    },
+  ],
+
+  latestCard: {
+    badge: "Latest from Bitscale",
+    title: "How to Integrate 2 Way HubSpot",
+    description:
+      "Prerequisites for this Integration is that you should have a HubSpot account and Copy the API key. We simple add our API key through the integrations pa...",
+    thumbnail: "/images/bitscale-video.png",
+    postedAt: "Posted today",
+    slidesCount: 4,
+    activeSlide: 0,
+  },
+
+  productDemo: {
+    title: "Complete product demo",
+    subtitle: "92% of users nailed BitScale after this walkthrough",
+    icon: "/icons/demo.svg",
+    progress: 75,
+    tasks: [
+      {
+        id: "create-data-list",
+        label: "Create your data list",
+        completed: true,
+      },
+      {
+        id: "learn-bitagent",
+        label: "Learn about BitAgent",
+        completed: true,
+      },
+      {
+        id: "connect-integration",
+        label: "Connect an integration",
+        completed: true,
+      },
+      {
+        id: "customise-waterfall",
+        label: "Customise waterfall providers",
+        completed: false,
+      },
+    ],
+  },
+
+  tabs: [
+    {
+      id: "my-grids",
+      label: "My Grids",
+      active: true,
+    },
+    {
+      id: "starred",
+      label: "Starred",
+      active: false,
+    },
+  ],
+
+  search: {
+    placeholder: "Search grids and workbooks...",
+  },
+
+  gridIcons: {
+    workbook: {
+      label: "Workbook",
+      icon: "/icons/workbook.svg",
+    },
+    group: {
+      label: "Group",
+      icon: "/icons/group.svg",
+    },
+    building: {
+      label: "Company",
+      icon: "/icons/building.svg",
+    },
+    linkedin: {
+      label: "LinkedIn",
+      icon: "/icons/linkedin.svg",
+    },
+    "sales-nav": {
+      label: "Sales Navigator",
+      icon: "/icons/sales-nav.svg",
+    },
+    company: {
+      label: "Find Company",
+      icon: "/icons/company.svg",
+    },
+    csv: {
+      label: "CSV",
+      icon: "/icons/csv.svg",
+    },
+    people: {
+      label: "Find People",
+      icon: "/icons/people.svg",
+    },
+    "google-maps": {
+      label: "Google Maps",
+      icon: "/icons/google-maps.svg",
+    },
+    google: {
+      label: "Google",
+      icon: "/icons/google.svg",
+    },
+    factors: {
+      label: "Factors",
+      icon: "/icons/factors.svg",
+    },
+    hubspot: {
+      label: "HubSpot",
+      icon: "/icons/hubspot.svg",
+    },
+  },
+
+  grids: [
+    {
+      id: "1",
+      name: "Workbook - Testing design Ideas for grid and workbook",
+      isStarred: false,
+      isExpanded: true,
+      icons: ["workbook", "group", "building"],
+      editedBy: {
+        avatar: "/avatars/sam-taylor.jpg",
+        name: "Sam Taylor",
+      },
+      lastUpdatedAt: "06 Aug, 2025",
+    },
+    {
+      id: "2",
+      name: "LinkedIn",
+      isStarred: false,
+      icons: ["linkedin"],
+      editedBy: {
+        avatar: "/avatars/chris-parker.jpg",
+        name: "Chris Parker",
+      },
+      lastUpdatedAt: "06 Aug, 2025",
+    },
+    {
+      id: "3",
+      name: "Sales nav",
+      isStarred: false,
+      icons: ["sales-nav"],
+      editedBy: {
+        avatar: "/avatars/jone-doe.jpg",
+        name: "Jone Doe",
+      },
+      lastUpdatedAt: "06 Aug, 2025",
+    },
+    {
+      id: "4",
+      name: "find company",
+      isStarred: true,
+      icons: ["company"],
+      editedBy: {
+        avatar: "/avatars/alex-morgan.jpg",
+        name: "Alex Morgan",
+      },
+      lastUpdatedAt: "06 Aug, 2025",
+    },
+    {
+      id: "5",
+      name: "import csv",
+      isStarred: true,
+      icons: ["csv"],
+      editedBy: {
+        avatar: "/avatars/drew-wilson.jpg",
+        name: "Drew Wilson",
+      },
+      lastUpdatedAt: "06 Aug, 2025",
+    },
+    {
+      id: "6",
+      name: "Find people",
+      isStarred: true,
+      icons: ["people"],
+      editedBy: {
+        avatar: "/avatars/jone-doe.jpg",
+        name: "Jone Doe",
+      },
+      lastUpdatedAt: "06 Aug, 2025",
+    },
+    {
+      id: "7",
+      name: "Google maps",
+      isStarred: false,
+      icons: ["google-maps"],
+      editedBy: {
+        avatar: "/avatars/jone-doe.jpg",
+        name: "Jone Doe",
+      },
+      lastUpdatedAt: "06 Aug, 2025",
+    },
+    {
+      id: "8",
+      name: "google search results",
+      isStarred: false,
+      icons: ["google"],
+      editedBy: {
+        avatar: "/avatars/jone-doe.jpg",
+        name: "Jone Doe",
+      },
+      lastUpdatedAt: "06 Aug, 2025",
+    },
+    {
+      id: "9",
+      name: "factors",
+      isStarred: false,
+      icons: ["factors"],
+      editedBy: {
+        avatar: "/avatars/jone-doe.jpg",
+        name: "Jone Doe",
+      },
+      lastUpdatedAt: "06 Aug, 2025",
+    },
+    {
+      id: "10",
+      name: "Hubspot List - 10 (05 Aug 25)",
+      isStarred: true,
+      icons: ["hubspot"],
+      editedBy: {
+        avatar: "/avatars/jone-doe.jpg",
+        name: "Jone Doe",
+      },
+      lastUpdatedAt: "06 Aug, 2025",
+    },
+  ],
+};
