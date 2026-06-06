@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Bitscale Dashboard Assignment
 
-## Getting Started
+A recreated Bitscale dashboard built with Next.js, TypeScript, Tailwind CSS, shadcn/ui, Lucide icons, and Motion.
 
-First, run the development server:
+Figma:
+https://www.figma.com/design/fSEdXdfmuufDStswBHN5KR/FE-Assigment?node-id=0-1&p=f
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+* Dashboard toolbar
+* Latest Bitscale card carousel
+* Product demo progress card
+* Grid table with search, sort, tabs, and starred rows
+* Find People dialog
+* Searchable multi-select filters
+* Preview people search results
+* Save search mock state
+* Reset filters
+* Scrollable sidebar and result table
+* External icons and avatars from URLs
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Tech Stack
 
-## Learn More
+* Next.js
+* React
+* TypeScript
+* Tailwind CSS
+* shadcn/ui
+* Lucide React
+* Motion
 
-To learn more about Next.js, take a look at the following resources:
+## Completed
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* [x] Dashboard UI
+* [x] Dashboard cards
+* [x] Grid table
+* [x] Search and sorting
+* [x] Starred tab
+* [x] Find People dialog
+* [x] Sidebar filters
+* [x] Searchable multi-select filters
+* [x] Preview people search results
+* [x] Save search mock state
+* [x] Reset filters
+* [x] Scrollable sidebar and table
+* [x] Separated config data and types
+* [x] External icon and avatar URLs
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Todos
 
-## Deploy on Vercel
+* [ ] Add keyboard navigation
+* [ ] Improve mobile responsiveness
+* [ ] Add real API integration
+* [ ] Add real saved search functionality
+* [ ] Add tests
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Limitations
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+* Data is mocked
+* People search filtering is based on local sample data
+* Mobile optimization is minimal
+* External URLs are used for icons and avatars
+* Advanced grid behavior can be improved using a data grid library
