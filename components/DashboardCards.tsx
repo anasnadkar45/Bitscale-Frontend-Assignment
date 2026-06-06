@@ -1,35 +1,39 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
 import { ClipboardCheck, Play } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
+
 import { cn } from "@/lib/utils";
+
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "./ui/card";
+} from "@/components/ui/card";
+
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogDescription,
-} from "./ui/dialog";
-import Image from "next/image";
-import { Checkbox } from "./ui/checkbox";
+} from "@/components/ui/dialog";
 
-const BitscaleNews = [
+import { Checkbox } from "@/components/ui/checkbox";
+import { dashboardData } from "@/config/dashboard-data";
+
+const bitscaleNews = [
   {
     id: 1,
     thumbnail: "https://img.youtube.com/vi/Zw3fnuOQp2g/maxresdefault.jpg",
     videoUrl: "https://www.youtube.com/embed/Zw3fnuOQp2g?si=HeOhaFvESzWZRdQk",
-    title: "How to integrate 2 Ways HubSpot",
-    description:
-      "Prerequisites for this Integration is that you should have a HubSpot account and copy the API key. We simply add our API key through the integrations page.",
-    lastUpdated: "today",
+    title: dashboardData.latestCard.title,
+    description: dashboardData.latestCard.description,
+    lastUpdated: dashboardData.latestCard.postedAt,
   },
   {
     id: 2,
@@ -38,7 +42,7 @@ const BitscaleNews = [
     title: "How to integrate Playbook",
     description:
       "Learn how to use Playbook inside Bitscale and organize your workflow properly.",
-    lastUpdated: "today",
+    lastUpdated: "Posted today",
   },
   {
     id: 3,
@@ -47,71 +51,53 @@ const BitscaleNews = [
     title: "How to create your first Grid",
     description:
       "A quick walkthrough to create your first grid and manage your workbook data.",
-    lastUpdated: "today",
+    lastUpdated: "Posted today",
   },
   {
     id: 4,
     thumbnail: "https://img.youtube.com/vi/Zw3fnuOQp2g/maxresdefault.jpg",
     videoUrl: "https://www.youtube.com/embed/Zw3fnuOQp2g?si=HeOhaFvESzWZRdQk",
     title: "How to use Integrations",
-    description:
-      "Connect your favorite tools with Bitscale using integrations.",
-    lastUpdated: "today",
+    description: "Connect your favorite tools with Bitscale using integrations.",
+    lastUpdated: "Posted today",
   },
 ];
 
-const ProductDemo = [
-  {
-    id: 1,
-    isCompleted: true,
-    title: "Create your data list",
-  },
-  {
-    id: 2,
-    isCompleted: true,
-    title: "Learn about BitAgent",
-  },
-  {
-    id: 3,
-    isCompleted: true,
-    title: "Connect an integration",
-  },
-  {
-    id: 4,
-    isCompleted: false,
-    title: "Customise waterfall providers",
-  },
-];
+const initialDemoTasks = dashboardData.productDemo.tasks;
 
 const DashboardCards = () => {
-  const [activeNews, setActiveNews] = useState(BitscaleNews[0].id);
+  const [activeNews, setActiveNews] = useState(bitscaleNews[0].id);
   const [open, setOpen] = useState(false);
-  const [productDemos, setProductDemos] = useState(ProductDemo);
+  const [productDemos, setProductDemos] = useState(initialDemoTasks);
 
-  const activeNewsItem = BitscaleNews.find((news) => news.id === activeNews);
+  const activeNewsItem = bitscaleNews.find((news) => news.id === activeNews);
 
-  const completedCount = productDemos.filter((demo) => demo.isCompleted).length;
-  const progress = Math.round((completedCount / productDemos.length) * 100);
+  const completedCount = productDemos.filter((demo) => demo.completed).length;
+
+  const progress =
+    productDemos.length > 0
+      ? Math.round((completedCount / productDemos.length) * 100)
+      : 0;
 
   useEffect(() => {
     if (open) return;
 
     const timer = setInterval(() => {
       setActiveNews((prev) => {
-        return prev >= BitscaleNews.length ? 1 : prev + 1;
+        return prev >= bitscaleNews.length ? 1 : prev + 1;
       });
     }, 3000);
 
     return () => clearInterval(timer);
   }, [open]);
 
-  function completeDemo(id: number) {
+  function completeDemo(id: string) {
     setProductDemos((prev) =>
       prev.map((demo) =>
         demo.id === id
           ? {
               ...demo,
-              isCompleted: !demo.isCompleted,
+              completed: !demo.completed,
             }
           : demo
       )
@@ -123,15 +109,14 @@ const DashboardCards = () => {
   return (
     <>
       <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
-        {/* Latest from Bitscale Card */}
-        <Card className="overflow-hidden border-none ring-0 bg-[#E7F3F880]">
+        <Card className="overflow-hidden border-none bg-[#E7F3F880] ring-0">
           <CardHeader className="flex flex-row items-center justify-between pb-3">
             <CardTitle className="text-base font-semibold text-[#347FA9]">
-              Latest from Bitscale
+              {dashboardData.latestCard.badge}
             </CardTitle>
 
             <div className="flex items-center gap-1">
-              {BitscaleNews.map((news) => (
+              {bitscaleNews.map((news) => (
                 <motion.button
                   key={news.id}
                   type="button"
@@ -194,7 +179,7 @@ const DashboardCards = () => {
                   </p>
 
                   <p className="mt-2 text-[11px] text-slate-500">
-                    Last updated: {activeNewsItem.lastUpdated}
+                    {activeNewsItem.lastUpdated}
                   </p>
                 </div>
               </motion.div>
@@ -202,7 +187,6 @@ const DashboardCards = () => {
           </CardContent>
         </Card>
 
-        {/* Complete Product Demo Card */}
         <Card className="bg-linear-to-b from-[#E7F3F880] to-30% to-transparent">
           <CardHeader className="flex flex-row items-start gap-4">
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-600 text-white">
@@ -210,9 +194,9 @@ const DashboardCards = () => {
             </div>
 
             <div>
-              <CardTitle>Complete product demo</CardTitle>
+              <CardTitle>{dashboardData.productDemo.title}</CardTitle>
               <CardDescription>
-                92% of users nailed BitScale after this walkthrough
+                {dashboardData.productDemo.subtitle}
               </CardDescription>
             </div>
           </CardHeader>
@@ -237,13 +221,13 @@ const DashboardCards = () => {
               {productDemos.map((demo) => (
                 <div key={demo.id} className="flex items-center gap-3">
                   <Checkbox
-                    checked={demo.isCompleted}
+                    checked={demo.completed}
                     onCheckedChange={() => completeDemo(demo.id)}
                     className="rounded-full data-[state=checked]:border-[#3B8AB8] data-[state=checked]:bg-[#3B8AB8]"
                   />
 
                   <span className="text-sm font-medium text-foreground/80">
-                    {demo.title}
+                    {demo.label}
                   </span>
                 </div>
               ))}
@@ -256,9 +240,7 @@ const DashboardCards = () => {
         <DialogContent className="max-w-3xl">
           <DialogHeader>
             <DialogTitle>{activeNewsItem.title}</DialogTitle>
-            <DialogDescription>
-              {activeNewsItem.description}
-            </DialogDescription>
+            <DialogDescription>{activeNewsItem.description}</DialogDescription>
           </DialogHeader>
 
           <div className="mt-4 overflow-hidden rounded-xl bg-black">
@@ -278,7 +260,7 @@ const DashboardCards = () => {
           </div>
 
           <p className="text-sm text-muted-foreground">
-            Last updated: {activeNewsItem.lastUpdated}
+            {activeNewsItem.lastUpdated}
           </p>
         </DialogContent>
       </Dialog>

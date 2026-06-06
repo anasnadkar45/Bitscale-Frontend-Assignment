@@ -1,85 +1,4 @@
-export type GridIconType =
-  | "workbook"
-  | "group"
-  | "building"
-  | "linkedin"
-  | "sales-nav"
-  | "company"
-  | "csv"
-  | "people"
-  | "google-maps"
-  | "google"
-  | "factors"
-  | "hubspot";
-
-export interface DashboardAction {
-  id: string;
-  label: string;
-  icon: string;
-  variant: "outline" | "dark";
-}
-
-export interface LatestCard {
-  badge: string;
-  title: string;
-  description: string;
-  thumbnail: string;
-  postedAt: string;
-  slidesCount: number;
-  activeSlide: number;
-}
-
-export interface DemoTask {
-  id: string;
-  label: string;
-  completed: boolean;
-}
-
-export interface ProductDemo {
-  title: string;
-  subtitle: string;
-  icon: string;
-  progress: number;
-  tasks: DemoTask[];
-}
-
-export interface GridIconConfig {
-  label: string;
-  icon: string;
-}
-
-export interface MyGrid {
-  id: string;
-  name: string;
-  isStarred: boolean;
-  isExpanded?: boolean;
-  icons: GridIconType[];
-  editedBy: {
-    avatar: string;
-    name: string;
-  };
-  lastUpdatedAt: string;
-}
-
-export interface DashboardData {
-  welcome: {
-    title: string;
-    subtitle: string;
-  };
-  actions: DashboardAction[];
-  latestCard: LatestCard;
-  productDemo: ProductDemo;
-  tabs: {
-    id: string;
-    label: string;
-    active: boolean;
-  }[];
-  search: {
-    placeholder: string;
-  };
-  gridIcons: Record<GridIconType, GridIconConfig>;
-  grids: MyGrid[];
-}
+import type { DashboardData } from "./dashboard-types";
 
 export const dashboardData: DashboardData = {
   welcome: {
@@ -91,19 +10,19 @@ export const dashboardData: DashboardData = {
     {
       id: "find-companies",
       label: "Find Companies",
-      icon: "/icons/building.svg",
+      icon: "https://api.iconify.design/lucide/building-2.svg",
       variant: "outline",
     },
     {
       id: "find-people",
       label: "Find People",
-      icon: "/icons/people.svg",
+      icon: "https://api.iconify.design/lucide/users.svg",
       variant: "outline",
     },
     {
       id: "new-grid",
       label: "New Grid",
-      icon: "/icons/plus.svg",
+      icon: "https://api.iconify.design/lucide/plus.svg",
       variant: "dark",
     },
   ],
@@ -113,7 +32,7 @@ export const dashboardData: DashboardData = {
     title: "How to Integrate 2 Way HubSpot",
     description:
       "Prerequisites for this Integration is that you should have a HubSpot account and Copy the API key. We simple add our API key through the integrations pa...",
-    thumbnail: "/images/bitscale-video.png",
+    thumbnail: "https://img.youtube.com/vi/Zw3fnuOQp2g/maxresdefault.jpg",
     postedAt: "Posted today",
     slidesCount: 4,
     activeSlide: 0,
@@ -122,7 +41,7 @@ export const dashboardData: DashboardData = {
   productDemo: {
     title: "Complete product demo",
     subtitle: "92% of users nailed BitScale after this walkthrough",
-    icon: "/icons/demo.svg",
+    icon: "https://api.iconify.design/lucide/clipboard-check.svg",
     progress: 75,
     tasks: [
       {
@@ -168,51 +87,51 @@ export const dashboardData: DashboardData = {
   gridIcons: {
     workbook: {
       label: "Workbook",
-      icon: "/icons/workbook.svg",
+      icon: "https://api.iconify.design/lucide/folder-kanban.svg",
     },
     group: {
       label: "Group",
-      icon: "/icons/group.svg",
+      icon: "https://api.iconify.design/lucide/users.svg",
     },
     building: {
       label: "Company",
-      icon: "/icons/building.svg",
+      icon: "https://api.iconify.design/lucide/building-2.svg",
     },
     linkedin: {
       label: "LinkedIn",
-      icon: "/icons/linkedin.svg",
+      icon: "https://api.iconify.design/simple-icons/linkedin.svg",
     },
     "sales-nav": {
       label: "Sales Navigator",
-      icon: "/icons/sales-nav.svg",
+      icon: "https://api.iconify.design/lucide/navigation.svg",
     },
     company: {
       label: "Find Company",
-      icon: "/icons/company.svg",
+      icon: "https://api.iconify.design/lucide/building.svg",
     },
     csv: {
       label: "CSV",
-      icon: "/icons/csv.svg",
+      icon: "https://api.iconify.design/lucide/file-spreadsheet.svg",
     },
     people: {
       label: "Find People",
-      icon: "/icons/people.svg",
+      icon: "https://api.iconify.design/lucide/user-search.svg",
     },
     "google-maps": {
       label: "Google Maps",
-      icon: "/icons/google-maps.svg",
+      icon: "https://api.iconify.design/simple-icons/googlemaps.svg",
     },
     google: {
       label: "Google",
-      icon: "/icons/google.svg",
+      icon: "https://api.iconify.design/simple-icons/google.svg",
     },
     factors: {
       label: "Factors",
-      icon: "/icons/factors.svg",
+      icon: "https://api.iconify.design/lucide/chart-no-axes-combined.svg",
     },
     hubspot: {
       label: "HubSpot",
-      icon: "/icons/hubspot.svg",
+      icon: "https://api.iconify.design/simple-icons/hubspot.svg",
     },
   },
 
@@ -224,7 +143,7 @@ export const dashboardData: DashboardData = {
       isExpanded: true,
       icons: ["workbook", "group", "building"],
       editedBy: {
-        avatar: "/avatars/sam-taylor.jpg",
+        avatar: "https://i.pravatar.cc/100?img=12",
         name: "Sam Taylor",
       },
       lastUpdatedAt: "06 Aug, 2025",
@@ -235,7 +154,7 @@ export const dashboardData: DashboardData = {
       isStarred: false,
       icons: ["linkedin"],
       editedBy: {
-        avatar: "/avatars/chris-parker.jpg",
+        avatar: "https://i.pravatar.cc/100?img=32",
         name: "Chris Parker",
       },
       lastUpdatedAt: "06 Aug, 2025",
@@ -246,7 +165,7 @@ export const dashboardData: DashboardData = {
       isStarred: false,
       icons: ["sales-nav"],
       editedBy: {
-        avatar: "/avatars/jone-doe.jpg",
+        avatar: "https://i.pravatar.cc/100?img=47",
         name: "Jone Doe",
       },
       lastUpdatedAt: "06 Aug, 2025",
@@ -257,7 +176,7 @@ export const dashboardData: DashboardData = {
       isStarred: true,
       icons: ["company"],
       editedBy: {
-        avatar: "/avatars/alex-morgan.jpg",
+        avatar: "https://i.pravatar.cc/100?img=15",
         name: "Alex Morgan",
       },
       lastUpdatedAt: "06 Aug, 2025",
@@ -268,7 +187,7 @@ export const dashboardData: DashboardData = {
       isStarred: true,
       icons: ["csv"],
       editedBy: {
-        avatar: "/avatars/drew-wilson.jpg",
+        avatar: "https://i.pravatar.cc/100?img=28",
         name: "Drew Wilson",
       },
       lastUpdatedAt: "06 Aug, 2025",
@@ -279,7 +198,7 @@ export const dashboardData: DashboardData = {
       isStarred: true,
       icons: ["people"],
       editedBy: {
-        avatar: "/avatars/jone-doe.jpg",
+        avatar: "https://i.pravatar.cc/100?img=47",
         name: "Jone Doe",
       },
       lastUpdatedAt: "06 Aug, 2025",
@@ -290,7 +209,7 @@ export const dashboardData: DashboardData = {
       isStarred: false,
       icons: ["google-maps"],
       editedBy: {
-        avatar: "/avatars/jone-doe.jpg",
+        avatar: "https://i.pravatar.cc/100?img=47",
         name: "Jone Doe",
       },
       lastUpdatedAt: "06 Aug, 2025",
@@ -301,7 +220,7 @@ export const dashboardData: DashboardData = {
       isStarred: false,
       icons: ["google"],
       editedBy: {
-        avatar: "/avatars/jone-doe.jpg",
+        avatar: "https://i.pravatar.cc/100?img=47",
         name: "Jone Doe",
       },
       lastUpdatedAt: "06 Aug, 2025",
@@ -312,7 +231,7 @@ export const dashboardData: DashboardData = {
       isStarred: false,
       icons: ["factors"],
       editedBy: {
-        avatar: "/avatars/jone-doe.jpg",
+        avatar: "https://i.pravatar.cc/100?img=47",
         name: "Jone Doe",
       },
       lastUpdatedAt: "06 Aug, 2025",
@@ -323,7 +242,7 @@ export const dashboardData: DashboardData = {
       isStarred: true,
       icons: ["hubspot"],
       editedBy: {
-        avatar: "/avatars/jone-doe.jpg",
+        avatar: "https://i.pravatar.cc/100?img=47",
         name: "Jone Doe",
       },
       lastUpdatedAt: "06 Aug, 2025",

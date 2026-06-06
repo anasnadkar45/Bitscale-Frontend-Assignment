@@ -11,11 +11,15 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
+        hostname: "i.pravatar.cc",
+      },
+      {
+        protocol: "https",
         hostname: "img.youtube.com",
       },
       {
         protocol: "https",
-        hostname: "i.pravatar.cc",
+        hostname: "api.iconify.design",
       },
     ],
   },
